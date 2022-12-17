@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import './style.css';
 
 export default function App() {
-  const [time, setTime] = useState(0);
+  const [counter, setCounter] = useState(0);
   const [start, setStart] = useState(false);
-  const startTimer = () => setStart(true);
-  const resetTimer = () => {
+  const startCounter = () => setStart(true);
+  const resetCounter = () => {
     setStart(false);
-    setTime(0);
+    setCounter(0);
   }
   useEffect(() => {
     let interval = null;
     if (start) {
       interval = setInterval(() => {
-        setTime((prev) => prev + 1000);
+        setCounter((prev) => prev + 1);
       }, 1000);
     } else {
       clearInterval(interval);
@@ -22,10 +23,10 @@ export default function App() {
   return (
     <div>
       <h1>Timer</h1>
-      <p>{`${("0" + Math.floor((time / 60000) % 60)).slice(-2)} mins : ${("0" + Math.floor((time / 1000) % 60)).slice(-2)} secs`}</p>
-      <button onClick={startTimer}>Start Timer</button>&nbsp;
-      <button onClick={() => setStart(false)}>Pause Timer</button>&nbsp;
-      <button onClick={() => resetTimer()}>Reset Timer</button><br/>&nbsp;
+      <p>{counter}</p>
+      <button onClick={startCounter}>Start Counter</button>&nbsp;
+      <button onClick={() => setStart(false)}>Pause Counter</button>&nbsp;
+      <button onClick={() => resetCounter()}>Reset Counter</button><br/>&nbsp;
     </div>
   );
 }
