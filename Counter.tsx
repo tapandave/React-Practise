@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import './style.css';
+import { useState, useEffect } from 'react';
 
 export default function App() {
   const [counter, setCounter] = useState(0);
@@ -9,6 +8,7 @@ export default function App() {
     setStart(false);
     setCounter(0);
   }
+  
   useEffect(() => {
     let interval = null;
     if (start) {
@@ -20,9 +20,10 @@ export default function App() {
     }
     return () => clearInterval(interval);
   }, [start]);
+  
   return (
     <div>
-      <h1>Timer</h1>
+      <h1>Counter</h1>
       <p>{counter}</p>
       <button onClick={startCounter}>Start Counter</button>&nbsp;
       <button onClick={() => setStart(false)}>Pause Counter</button>&nbsp;
